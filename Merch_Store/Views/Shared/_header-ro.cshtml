@@ -1,0 +1,27 @@
+﻿<header class="d-flex justify-content-between align-items-center py-3 border-bottom">
+    <a href="/" class="fs-3 fw-bold text-decoration-none">Merch Store</a>
+    <div class="d-flex align-items-center gap-3">
+        @{
+            var currentLang = ViewData["Lang"]?.ToString() ?? "ru";
+            var returnUrl = ViewContext.HttpContext.Request.Path + ViewContext.HttpContext.Request.QueryString;
+
+        }
+
+        <ul class="header-ul">
+            <li class="@(currentLang == "ru" ? "active-lang" : "")">
+                <a href="@Url.Action("Set", "Language", new { lang = "ru", returnUrl = Context.Request.Path })">ru</a>
+            </li>
+            <li class="@(currentLang == "ro" ? "active-lang" : "")">
+                <a href="@Url.Action("Set", "Language", new { lang = "ro", returnUrl = Context.Request.Path })">ro</a>
+            </li>
+            <li class="@(currentLang == "eng" ? "active-lang" : "")">
+                <a href="@Url.Action("Set", "Language", new { lang = "eng", returnUrl = Context.Request.Path })">eng</a>
+            </li>
+        </ul>
+
+        <div>
+            <a href="#" class="me-2"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+</header>
