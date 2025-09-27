@@ -1,7 +1,18 @@
+using DB_Layer.Contexts;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+var conn = builder.Configuration.GetConnectionString("Host=localhost;Port=5432;Database=merch_store;Username=postgres;Password=postgres");
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseNpgsql(conn));
+
 builder.Services.AddControllersWithViews();
+// если API нужны отдельно:
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
@@ -19,6 +30,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.MapControllers();
 
 app.MapControllerRoute(
     name: "default",

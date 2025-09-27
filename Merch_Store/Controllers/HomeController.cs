@@ -13,8 +13,9 @@ namespace Merch_Store.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index(string lang = "eng")
+        public IActionResult Index(string lang)
         {
+            lang = Request.Cookies["lang"] ?? "eng"; // получаем язык из куки, по умолчанию eng
             ViewData["Lang"] = lang; // сохраняем язык
             return View();
         }

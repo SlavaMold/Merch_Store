@@ -3,7 +3,9 @@ body {
     font-family: 'Metal Mania', cursive;
     font-weight: 400; /* обычный вес */
     color: #eee; /* светлый цвет по умолчанию, можно поменять */
-    background-color: #111; /* тёмный фон для «метал» атмосферы */
+    background-image: url("../images/fon.jpg"); /* тёмный фон для «метал» атмосферы */
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 /* Контейнеры, карточки и другие блоки наследуют этот шрифт автоматически */
@@ -29,68 +31,77 @@ body {
 }
 
 /* Обертка для картинок внутри карточки */
-.product-card .card-img-wrapper {
-    position: relative;
+/* Контейнер карточек */
+.product-container {
+    margin-top: 20px;
+}
+
+/* Карточка товара */
+.product-card {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 10px;
     overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    max-width: 500px; /* чтобы карточка не растягивалась на всю ширину */
+    margin-bottom: 25px;
 }
 
-.product-card .card-img {
-    transition: opacity 0.4s ease-in-out;
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.6);
+    }
+
+/* Картинки в карточке */
+.product-img {
     width: 100%;
+    max-width: 500px;
+    height: auto;
     display: block;
+    transition: opacity 0.4s ease, transform 0.3s ease;
 }
 
-    .product-card .card-img.back {
+    .product-img.back {
         position: absolute;
         top: 0;
         left: 0;
         opacity: 0;
     }
 
-.product-card:hover .card-img.front {
+.product-card:hover .product-img.front {
     opacity: 0;
 }
 
-.product-card:hover .card-img.back {
+.product-card:hover .product-img.back {
     opacity: 1;
 }
 
-
-.product-img {
-    max-width: 500px; /* ограничиваем ширину */
-    max-height: 500px; /* ограничиваем высоту */
-    width: 100%; /* занимает всю ширину контейнера */
-    height: auto; /* сохраняем пропорции */
-    object-fit: contain; /* картинка полностью помещается внутрь */
-}
-
-
-/* Контейнер карточек */
-.product-container {
-    margin-top: 30px;
-}
-
-/* Карточка */
-.product-card {
-    display: inline-block;
-    max-width: 520px;
-    margin: 15px 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
+/* Текст в карточках */
+.product-card .card-body {
+    padding: 15px;
     text-align: center;
+    color: #333;
 }
 
-/* Картинки */
-.product-img {
-    max-width: 500px;
-    max-height: 500px;
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    display: block;
-    margin: 0 auto;
+/* Название */
+.product-card .card-title {
+    font-size: 1.5rem;
+    color: #eee;
+    margin-bottom: 10px;
+    transition: color 0.3s;
 }
+
+    .product-card .card-title:hover {
+        color: #ff3333;
+    }
+
+/* Описание */
+.product-card .card-text {
+    font-size: 1rem;
+    color: #bbb;
+}
+
 
 /* Адаптив */
 @media (max-width: 992px) {
@@ -153,3 +164,25 @@ body {
     font-weight: 400;
     text-shadow: 1px 1px 2px black;
 }
+
+.sidebar {
+    display: inline-block; /* ширина зависит от содержимого */
+    min-width: max-content; /* не ломает переносы */
+    padding: 0.75rem; /* добавляет внутренний отступ */
+    background-color: #f8f9fa;
+    border-radius: 6px; /* немного скругления, чтобы не выглядело "впритык" */
+    color: black;
+}
+
+    .sidebar a {
+        display: block;
+        padding: 0.25rem 0.75rem; /* отступы внутри ссылок */
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .sidebar ul {
+        padding-left: 0.5rem;
+    }
+
+
