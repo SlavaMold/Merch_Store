@@ -1,18 +1,26 @@
-using DB_Layer.Contexts;
+using merch_store.DB_Layer.Contexts;
 using Microsoft.EntityFrameworkCore;
+using merch_store.API_Layer;
+using merch_store.BusinessLogic.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-var conn = builder.Configuration.GetConnectionString("Host=localhost;Port=5432;Database=merch_store;Username=postgres;Password=postgres");
+//var conn = builder.Services.AddDbContext<ApplicationDbContext>(options =>
+//    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(conn));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddControllersWithViews();
 // если API нужны отдельно:
 builder.Services.AddControllers();
+
+builder.Services.AddScoped<merch_store.API_Layer.ProductRepository>();
+builder.Services.AddScoped<merch_store.BusinessLogic.Services.ProductService>();
+
+builder.Services.AddControllersWithViews();
+
 
 var app = builder.Build();
 

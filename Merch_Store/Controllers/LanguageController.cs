@@ -1,16 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-public class LanguageController : Controller
+namespace merch_store.Controllers
 {
-    public IActionResult Set(string lang, string returnUrl = "/")
+    public class LanguageController : Controller
     {
-        // Сохраняем язык в куку на 30 дней
-        Response.Cookies.Append("lang", lang, new CookieOptions
+        public IActionResult Set(string lang, string returnUrl = "/")
         {
-            Expires = DateTimeOffset.UtcNow.AddDays(30),
-            IsEssential = true
-        });
+            // Сохраняем язык в куку на 30 дней
+            Response.Cookies.Append("lang", lang, new CookieOptions
+            {
+                Expires = DateTimeOffset.UtcNow.AddDays(30),
+                IsEssential = true
+            });
 
-        return LocalRedirect(returnUrl);
+            return LocalRedirect(returnUrl);
+        }
     }
 }

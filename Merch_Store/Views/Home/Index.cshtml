@@ -1,22 +1,24 @@
-﻿@{
+﻿@model List<merch_store.DB_Layer.DBTables.Product>
+
+@{
     ViewData["Title"] = "Main Page";
 }
+
 <div class="container product-container">
     <div class="row">
-
-@for (int i = 1; i <= 6; i++)
-{
-    <div class="col-md-4 col-sm-6 d-flex justify-content-center">
-        <div class="card product-card">
-            <img src="@Url.Content($"~/images/pic{i}.jpg")" class="card-img front product-img" alt="good @i" />
-            <img src="@Url.Content($"~/images/back{i}.jpg")" class="card-img back product-img" alt="good @i" />
-            <div class="card-body text-center">
-                <h5 class="card-title">Good @i</h5>
-                <p class="card-text">Description @i</p>
+        @foreach (var product in Model)
+        {
+            <div class="col-md-4 col-sm-6 d-flex justify-content-center">
+                <div class="card product-card">
+                    <img src="@product.ImageFront" class="card-img front product-img" alt="@product.Name front" />
+                    <img src="@product.ImageBack" class="card-img back product-img" alt="@product.Name back" />
+                    <div class="card-body text-center">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text">@product.Description</p>
+                        <p class="card-text fw-bold">@product.Price MDL</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-
-}
+        }
     </div>
 </div>

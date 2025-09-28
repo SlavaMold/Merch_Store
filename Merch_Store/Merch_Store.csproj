@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Api_Layer\Api_Layer.csproj" />
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj" />
     <ProjectReference Include="..\DB_Layer\DB_Layer.csproj" />
   </ItemGroup>
 

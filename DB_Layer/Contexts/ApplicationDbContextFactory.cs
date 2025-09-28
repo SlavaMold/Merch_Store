@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
-namespace DB_Layer.Contexts
+namespace merch_store.DB_Layer.Contexts
 {
     // Фабрика нужна EF Core для миграций в design-time
     public class ApplicationDbContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext>

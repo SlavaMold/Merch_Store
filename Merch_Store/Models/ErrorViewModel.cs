@@ -1,4 +1,4 @@
-namespace Merch_Store.Models
+namespace merch_store.Models
 {
     public class ErrorViewModel
     {
