@@ -17,7 +17,6 @@ namespace merch_store.DB_Layer.Contexts
                 entity.Property(p => p.Price).HasColumnType("decimal(18,2)");
 
                 entity.Property(p => p.Name).IsRequired();
-                entity.Property(p => p.Description).IsRequired();
                 entity.Property(p => p.ImageFront).IsRequired();
                 entity.Property(p => p.ImageBack).IsRequired();
                 entity.Property(p => p.Category).IsRequired();

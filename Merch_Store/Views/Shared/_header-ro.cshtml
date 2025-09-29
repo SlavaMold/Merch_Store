@@ -2,15 +2,13 @@
     <a href="/" class="fs-3 text-decoration-none text-white">Merch Store</a>
     <div class="d-flex align-items-center gap-3">
         @{
-            var currentLang = ViewData["Lang"]?.ToString() ?? "ru";
+            var currentLang = ViewData["Lang"]?.ToString() ?? "eng";
             var returnUrl = ViewContext.HttpContext.Request.Path + ViewContext.HttpContext.Request.QueryString;
 
         }
 
         <ul class="header-ul">
-            <li class="@(currentLang == "ru" ? "active-lang" : "")">
-                <a href="@Url.Action("Set", "Language", new { lang = "ru", returnUrl = Context.Request.Path })">ru</a>
-            </li>
+         
             <li class="@(currentLang == "ro" ? "active-lang" : "")">
                 <a href="@Url.Action("Set", "Language", new { lang = "ro", returnUrl = Context.Request.Path })">ro</a>
             </li>

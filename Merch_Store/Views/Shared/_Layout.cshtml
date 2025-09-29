@@ -2,7 +2,7 @@
     Layout = null;
 
     // Попробуем прочитать язык из куки
-    string lang = "ru"; // по умолчанию
+    string lang = "eng"; // по умолчанию
     if (Context.Request.Cookies.ContainsKey("lang"))
     {
         lang = Context.Request.Cookies["lang"];
@@ -63,5 +63,7 @@
 
     <!-- Custom JS -->
     <script src="~/js/site.js" asp-append-version="true"></script>
+    @* <script src="~/js/filters.js"></script> *@
+
 </body>
 </html>

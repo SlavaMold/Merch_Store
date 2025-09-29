@@ -1,0 +1,91 @@
+﻿dotnet ef migrations add UpdateProductsTable --project DB_Layer --startup-project Merch_Store
+dotnet ef database update --project DB_Layer --startup-project Merch_Store
+\c Merch_Store
+
+\d "Products"
+\dt
+\q
+\dt+
+
+
+INSERT INTO "Products" ("Name", "Description", "Price", "ImageFront", "ImageBack", "Category", "Type", "BandName", "ByBands")
+VALUES
+('Good 1', 'T-shirt of Cerebral Attack', 29.99, 'tshirt_front.png', 'tshirt_back.png', 'clothes', 'tshirt', 'Cerebral Attack', true), 
+('Good 2', 'Hoodie of Dead Goose', 49.99, 'hoodie_front.png', 'hoodie_back.png', 'clothes', 'hoodie', 'Dead Goose', true),
+('Good 3', 'T-shirt of Egocide', 34.99, 'tshirt_front.png', 'tshirt_back.png', 'clothes', 'tshirt', 'Egocide', true), 
+('Good 4', 'Hoodie of Gospodar', 54.99, 'hoodie_front.png', 'hoodie_back.png', 'clothes', 'hoodie', 'Gospodar', true),
+('Good 5', 'T-shirt of Green Cringe', 31.99, 'tshirt_front.png', 'tshirt_back.png', 'clothes', 'tshirt', 'Green Cringe', true), 
+('Good 6', 'Hoodie of NoMoreRemorse', 52.99, 'hoodie_front.png', 'hoodie_back.png', 'byband', 'hoodie', 'NoMoreRemorse', true);
+
+
+INSERT INTO "Products" ("Name", "Description", "Price", "ImageFront", "ImageBack", "Category", "Type", "BandName", "ByBands")
+VALUES
+('Rock T-shirt', 'Black Rock T-shirt', 24.99, 'tshirt_front.png', 'tshirt_back.png', 'clothes', 'tshirt', NULL, false), 
+('Rock Hoodie', 'Dark Rock Hoodie', 44.99, 'hoodie_front.png', 'hoodie_back.png', 'clothes', 'hoodie', NULL, false),
+('Guitar Pick', 'Metal Guitar Pick', 5.99, 'sign_front.png', 'sign_back.png', 'accessories', 'signs', NULL, false),
+('Band Poster', 'Poster of favorite band', 14.99, 'banner_front.png', 'banner_back.png', 'accessories', 'banners', NULL, false),
+('Rock Vest', 'Leather Rock Vest', 59.99, 'hoodie_front.png', 'hoodie_back.png', 'clothes', 'hoodie', NULL, false),
+('Patch Set', 'Set of rock patches', 12.99, 'sign_front.png', 'sign_back.png', 'accessories', 'signs', NULL, false);
+
+
+INSERT INTO "ProductDescription" ("ProductId", "Language", "Description")
+VALUES
+-- Cerebral Attack T-shirt
+(1, 'eng', 'T-shirt of Cerebral Attack'),
+(1, 'ru', 'Футболка группы Cerebral Attack'),
+(1, 'ro', 'Tricou al trupei Cerebral Attack'),
+
+-- Dead Goose Hoodie
+(2, 'eng', 'Hoodie of Dead Goose'),
+(2, 'ru', 'Толстовка группы Dead Goose'),
+(2, 'ro', 'Hanorac al trupei Dead Goose'),
+
+-- Egocide T-shirt
+(3, 'eng', 'T-shirt of Egocide'),
+(3, 'ru', 'Футболка группы Egocide'),
+(3, 'ro', 'Tricou al trupei Egocide'),
+
+-- Gospodar Hoodie
+(4, 'eng', 'Hoodie of Gospodar'),
+(4, 'ru', 'Толстовка группы Gospodar'),
+(4, 'ro', 'Hanorac al trupei Gospodar'),
+
+-- Green Cringe T-shirt
+(5, 'eng', 'T-shirt of Green Cringe'),
+(5, 'ru', 'Футболка группы Green Cringe'),
+(5, 'ro', 'Tricou al trupei Green Cringe'),
+
+-- NoMoreRemorse Hoodie
+(6, 'eng', 'Hoodie of NoMoreRemorse'),
+(6, 'ru', 'Толстовка группы NoMoreRemorse'),
+(6, 'ro', 'Hanorac al trupei NoMoreRemorse'),
+
+-- Rock T-shirt
+(7, 'eng', 'Black Rock T-shirt'),
+(7, 'ru', 'Чёрная рок-футболка'),
+(7, 'ro', 'Tricou rock negru'),
+
+-- Rock Hoodie
+(8, 'eng', 'Dark Rock Hoodie'),
+(8, 'ru', 'Тёмный рок-худи'),
+(8, 'ro', 'Hanorac rock închis'),
+
+-- Guitar Pick
+(9, 'eng', 'Metal Guitar Pick'),
+(9, 'ru', 'Медиатор для гитары (метал)'),
+(9, 'ro', 'Pană de chitară metalică'),
+
+-- Band Poster
+(10, 'eng', 'Poster of favorite band'),
+(10, 'ru', 'Постер любимой группы'),
+(10, 'ro', 'Poster al trupei preferate'),
+
+-- Rock Vest
+(11, 'eng', 'Leather Rock Vest'),
+(11, 'ru', 'Кожаный рок-жилет'),
+(11, 'ro', 'Vestă rock din piele'),
+
+-- Patch Set
+(12, 'eng', 'Set of rock patches'),
+(12, 'ru', 'Набор рок-шевронов'),
+(12, 'ro', 'Set de patch-uri rock');

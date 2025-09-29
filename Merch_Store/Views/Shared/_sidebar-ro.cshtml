@@ -1,39 +1,61 @@
-﻿<aside class="col-md-3 col-lg-2 bg-light sidebar py-3">
+﻿@{
+    var selectedCat = (ViewBag.SelectedCategory as string) ?? "";
+    var selectedType = (ViewBag.SelectedType as string) ?? "";
+    var selectedBand = (ViewBag.SelectedBand as string) ?? "";
+}
+<aside class="col-md-3 col-lg-2 bg-light py-3 sidebar">
     <h2 class="fs-5 mb-3">Categorii</h2>
     <ul class="list-unstyled">
+        <!-- Clothes -->
         <li>
-            <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#cat1" role="button">
-                Haine <i class="fas fa-chevron-down"></i>
-            </a>
-            <ul class="collapse list-unstyled ms-3" id="cat1">
-                <li><a href="#">Tricouri</a></li>
-                <li><a href="#">Hoodie</a></li>
+            <div class="d-flex justify-content-between align-items-center">
+                <!-- Toggle button (только для collapse) -->
+                <button class="btn btn-sm btn-aside p-0 text-start" type="button" data-bs-toggle="collapse" data-bs-target="#cat1" aria-expanded="false" aria-controls="cat1">
+                    Imbracaminte <i class="fas fa-chevron-down ms-2"></i>
+                </button>
+                <!-- Optional: "Все" ссылка, чтобы отфильтровать всю категорию -->
+                <a class="ms-auto category-link @(selectedCat == "clothes" ? "active-filter" : "")" data-category="clothes" href="?category=clothes">All</a>
+            </div>
+            <ul class="collapse list-unstyled ms-3 mt-2" id="cat1">
+                <li><a class="filter-link @(selectedType == "t-shirt" ? "active-filter" : "")" data-category="clothes" data-type="tshirt" href="?category=clothes&type=tshirt">Tricuori</a></li>
+                <li><a class="filter-link @(selectedType == "hoodie" ? "active-filter" : "")" data-category="clothes" data-type="hoodie" href="?category=clothes&type=hoodie">Hoodie</a></li>
             </ul>
         </li>
-        <li>
-            <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#cat2" role="button">
-                Accesorii <i class="fas fa-chevron-down"></i>
-            </a>
-            <ul class="collapse list-unstyled ms-3" id="cat2">
-                <li><a href="#">Semnele</a></li>
-                <li><a href="#">Placate</a></li>
+
+        <!-- Accessories -->
+        <li class="mt-2">
+            <div class="d-flex justify-content-between align-items-center">
+                <button class="btn btn-sm btn-aside p-0 text-start" type="button" data-bs-toggle="collapse" data-bs-target="#cat2" aria-expanded="false" aria-controls="cat2">
+                    Accesorii <i class="fas fa-chevron-down ms-2"></i>
+                </button>
+                <a class="ms-auto category-link @(selectedCat == "accessories" ? "active-filter" : "")" data-category="accessories" href="?category=accessories">All</a>
+            </div>
+            <ul class="collapse list-unstyled ms-3 mt-2" id="cat2">
+                <li><a class="filter-link @(selectedType == "signs" ? "active-filter" : "")" data-category="accessories" data-type="signs" href="?category=accessories&type=signs">Semnele</a></li>
+                <li><a class="filter-link @(selectedType == "banners" ? "active-filter" : "")" data-category="accessories" data-type="banners" href="?category=accessories&type=banners">Bannere</a></li>
             </ul>
         </li>
-        <li>
-            <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#cat3" role="button">
-                Dupa Trupe <i class="fas fa-chevron-down"></i>
-            </a>
-            <ul class="collapse list-unstyled ms-3" id="cat3">
-                <li><a href="#">Cerebral Attack</a></li>
-                <li><a href="#">Dead Goose</a></li>
-                <li><a href="#">Egocide</a></li>
-                <li><a href="#">Gospodar</a></li>
-                <li><a href="#">Green Cringe</a></li>
-                <li><a href="#">NoMoreRemorse</a></li>
-                <li><a href="#">Re-Education</a></li>
-                <li><a href="#">Suture Scarification</a></li>
-                <li><a href="#">Slam</a></li>
-                <li><a href="#">Weapon Guide</a></li>
+
+        <!-- By Bands -->
+        <li class="mt-2">
+            <div class="d-flex justify-content-between align-items-center">
+                <button class="btn btn-sm btn-aside p-0 text-start" type="button" data-bs-toggle="collapse" data-bs-target="#cat3" aria-expanded="false" aria-controls="cat3">
+                    De la trupe <i class="fas fa-chevron-down ms-2"></i>
+                </button>
+                <a class="ms-auto category-link @(selectedCat == "bybands" ? "active-filter" : "")" href="?category=bybands">All</a>
+            </div>
+            <ul class="collapse list-unstyled ms-3 mt-2" id="cat3">
+                <!-- Тут data-type — ставь код группы/бэнда, одинаковый в любой языковой версии -->
+                <li><a class="filter-type @(selectedType == "cerebral-attack" ? "active-filter" : "")" data-type="cerebral-attack" data-parent="bybands" href="?category=bybands&band=cerebral-attack">Cerebral Attack</a></li>
+                <li><a class="filter-type @(selectedType == "dead-goose" ? "active-filter" : "")" data-type="dead-goose" data-parent="bybands" href="?category=bybands&band=dead-goose">Dead Goose</a></li>
+                <li><a class="filter-type @(selectedType == "Egocide" ? "active-filter" : "")" data-type="Egocide" data-parent="bybands" href="?category=bybands&band=Egocide">Egocide</a></li>
+                <li><a class="filter-type @(selectedType == "Gospodar" ? "active-filter" : "")" data-type="Gospodar" data-parent="bybands" href="?category=bybands&band=Gospodar">Gospodar</a></li>
+                <li><a class="filter-type @(selectedType == "Green-Cringe" ? "active-filter" : "")" data-type="Green-Cringe" data-parent="bybands" href="?category=bybands&band=Green-Cringe">Green Cringe</a></li>
+                <li><a class="filter-type @(selectedType == "NoMoreRemorse" ? "active-filter" : "")" data-type="NoMoreRemorse" data-parent="bybands" href="?category=bybands&band=NoMoreRemorse">NoMoreRemorse</a></li>
+                <li><a class="filter-type @(selectedType == "Re-Education" ? "active-filter" : "")" data-type="Re-Education" data-parent="bybands" href="?category=bybands&band=Re-Education">Re-Education</a></li>
+                <li><a class="filter-type @(selectedType == "Suture-Scarification" ? "active-filter" : "")" data-type="Suture-Scarification" data-parent="bybands" href="?category=bybands&band=Suture-Scarification">Suture Scarification</a></li>
+                <li><a class="filter-type @(selectedType == "Slam" ? "active-filter" : "")" data-type="Slam" data-parent="bybands" href="?category=bybands&band=Slam">Slam</a></li>
+                <li><a class="filter-type @(selectedType == "Weapon-Guide" ? "active-filter" : "")" data-type="Weapon-Guide" data-parent="bybands" href="?category=bybands&band=Weapon-Guide">Weapon Guide</a></li>
             </ul>
         </li>
     </ul>

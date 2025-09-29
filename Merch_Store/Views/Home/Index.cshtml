@@ -5,20 +5,10 @@
 }
 
 <div class="container product-container">
-    <div class="row">
-        @foreach (var product in Model)
-        {
-            <div class="col-md-4 col-sm-6 d-flex justify-content-center">
-                <div class="card product-card">
-                    <img src="@product.ImageFront" class="card-img front product-img" alt="@product.Name front" />
-                    <img src="@product.ImageBack" class="card-img back product-img" alt="@product.Name back" />
-                    <div class="card-body text-center">
-                        <h5 class="card-title">@product.Name</h5>
-                        <p class="card-text">@product.Description</p>
-                        <p class="card-text fw-bold">@product.Price MDL</p>
-                    </div>
-                </div>
-            </div>
-        }
+    <div class="row" id="products-grid">
+        @Html.Partial("_ProductsGrid", Model)
     </div>
 </div>
+
+<!-- optional: подключение файлов JS -->
+<script src="~/js/filters.js"></script>

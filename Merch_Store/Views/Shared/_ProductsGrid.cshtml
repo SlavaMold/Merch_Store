@@ -1,0 +1,16 @@
+﻿@model List<merch_store.DB_Layer.DBTables.Product>
+
+@foreach (var product in Model)
+{
+    <div class="col-md-4 col-sm-6 d-flex justify-content-center">
+        <div class="card product-card">
+            <img src="@Url.Content($"~/images/{product.ImageFront}")" class="card-img front product-img" alt="@product.Name front" />
+            <img src="@Url.Content($"~/images/{product.ImageBack}")" class="card-img back product-img" alt="@product.Name back" />
+            <div class="card-body text-center">
+                <h5 class="card-title">@product.Name</h5>
+                <p class="card-text">@product.Description</p>
+                <p class="card-text fw-bold">@product.Price.ToString("C")</p>
+            </div>
+        </div>
+    </div>
+}

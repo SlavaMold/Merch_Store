@@ -17,27 +17,31 @@ namespace merch_store.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index(string lang)
+        public IActionResult Index(string lang, string? category, string? type, string? band)
         {
-            var products = _productService.GetAllProducts();
             lang = Request.Cookies["lang"] ?? "eng"; // получаем язык из куки, по умолчанию eng
             ViewData["Lang"] = lang; // сохраняем язык
+
+            // получаем фильтрованные товары
+            var products = _productService.GetFilteredProducts(category, type, band, lang);
+            ViewBag.SelectedCategory = category?.ToLower();
+            ViewBag.SelectedType = type?.ToLower();
+            ViewBag.SelectedBand = band;
+
             return View(products);
+        }
+
+        [HttpGet]
+        public IActionResult ProductsPartial(string? category, string? type, string? band, string lang)
+        {
+
+            var products = _productService.GetFilteredProducts(category, type, band, lang);
+            return PartialView("_ProductsGrid", products);
         }
 
         public IActionResult Privacy()
         {
             return View();
-        }
-
-        public IActionResult Details(int id)
-        {
-            var product = _productService.GetProductById(id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-            return View(product);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
